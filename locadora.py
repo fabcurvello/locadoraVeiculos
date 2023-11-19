@@ -76,6 +76,8 @@ def o_que_deseja():
 # ----- Execução do Programa -----
 iniciar_veiculos_alugar()
 gestor_execucao()
+
+
 #mostrar_portifolio()
 #o_que_deseja()
 
