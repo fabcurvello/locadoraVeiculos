@@ -1,4 +1,5 @@
 veiculos_alugar = []
+veiculos_alugados = []
 
 
 def iniciar_veiculos_alugar():
@@ -45,19 +46,11 @@ def iniciar_veiculos_alugar():
 
 def gestor_execucao():
     while( True ):
-        encerrar = input("Deseja encerrar o programa? (S ou N) ").lower()
-        if ( encerrar == "s" or encerrar == "sim" ):
+        continuar = input("Deseja continuar o programa? (S ou N) ").lower()
+        if ( continuar == "n" ):
+            print("-- Fim da execução do programa --")
             break
         o_que_deseja()
-
-
-def mostrar_portifolio():
-    cont = 1
-    print("\n----------- PORTIFÓLIO DE VEÍCULOS DISPONÍVEIS PARA LOCAÇÃO -----------")
-    for veiculo in veiculos_alugar:
-        print(f" {cont} - {veiculo['fabricante']} {veiculo['modelo']} {veiculo['cor']} {veiculo['ano']} - Diária R$ {veiculo['valor']:.2f}" )
-        cont += 1
-    print("------------------------------------------------------------------------\n")
 
 
 def o_que_deseja():
@@ -71,6 +64,51 @@ def o_que_deseja():
     desejo = input().lower()
     if (desejo == "a"):
         mostrar_portifolio()
+    elif (desejo == "b"):
+        alugar_um_veiculo()
+    else:
+        print("Opção inválida...")
+
+
+def mostrar_portifolio():
+    cont = 1
+    print("\n----------- PORTIFÓLIO DE VEÍCULOS DISPONÍVEIS PARA LOCAÇÃO -----------")
+    for veiculo in veiculos_alugar:
+        print(f" {cont} - {veiculo['fabricante']} {veiculo['modelo']} {veiculo['cor']} {veiculo['ano']} - Diária R$ {veiculo['valor']:.2f}" )
+        cont += 1
+    print("------------------------------------------------------------------------\n")
+
+
+def alugar_um_veiculo():
+    mostrar_portifolio()
+    codigo = int(input("Informe o código de veículo desejado: "))
+
+    if ( (codigo >= 1) and (codigo <= len(veiculos_alugar)) ):
+        print(f"Veículo selecionado: "
+              f"{veiculos_alugar[codigo -1]['fabricante']} "
+              f"{veiculos_alugar[codigo -1]['modelo']} "
+              f"{veiculos_alugar[codigo -1]['cor']} "
+              f"{veiculos_alugar[codigo -1]['ano']}"
+              f" - Diária R$ {veiculos_alugar[codigo -1]['valor']:.2f}")
+        conf = input("Você confirma a sua escolha? (S ou N) ").lower()
+        if ( conf == "n"):
+            alugar_um_veiculo()
+
+        print(f"Valor da diária: R$ {veiculos_alugar[codigo -1]['valor']:.2f}. ")
+        total_dias = int(input("Deseja quantos dias de locação? "))
+        valor_total = veiculos_alugar[codigo - 1]['valor'] * total_dias
+        print(f"Valor total da locação será de R$ {valor_total:.2f}.")
+        de_acordo = input(f"Você confirma a locação do veículo: "
+                          f"{veiculos_alugar[codigo -1]['modelo']} "
+                          f"por {total_dias} dias "
+                          f"no valor de R$ {valor_total:.2f}? (S ou N) ").lower()
+        if ( de_acordo == "s"):
+            veiculos_alugados = veiculos_alugar[codigo - 1]
+            del veiculos_alugar[codigo - 1]
+            print("Parabéns! Você alugou um excelente veículo.")
+    else:
+        print("Opção inválida...")
+
 
 
 # ----- Execução do Programa -----
