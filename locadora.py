@@ -69,6 +69,8 @@ def o_que_deseja():
         mostrar_portifolio()
     elif (desejo == alugar):
         alugar_um_veiculo()
+    elif (desejo == devolver):
+        devolver_um_veiculo()
     else:
         print("Opção inválida...")
 
@@ -104,7 +106,7 @@ def alugar_um_veiculo():
                               f"por {total_dias} dias "
                               f"no valor de R$ {valor_total:.2f}? (S ou N) ").lower()
             if ( de_acordo == "s"):
-                veiculos_alugados = veiculos_a_alugar[codigo - 1]
+                veiculos_alugados.append(veiculos_a_alugar[codigo - 1])
                 del veiculos_a_alugar[codigo - 1]
                 print("Parabéns! Você alugou um excelente veículo.")
             else:
@@ -114,6 +116,14 @@ def alugar_um_veiculo():
     else:
         print("Opção inválida...")
 
+
+def devolver_um_veiculo():
+    cont = 1
+    print("\n----------- SELECIONE QUAL O VEÍCULO PARA DEVOLUÇÃO DE LOCAÇÃO -----------")
+    for veiculo in veiculos_alugados:
+        print(f" {cont} - {veiculo['fabricante']} {veiculo['modelo']} {veiculo['cor']} {veiculo['ano']}")
+        cont += 1
+    print("----------------------------------------------------------------------------\n")
 
 
 # ----- Execução do Programa -----
