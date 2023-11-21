@@ -50,13 +50,13 @@ def iniciar_veiculos_alugar():
 
 # Gerencia a execução/finalização do programa
 def gestor_execucao():
-    o_que_deseja()
     while( True ):
+        o_que_deseja()
         continuar = input("Deseja continuar o programa? (S ou N) ").lower()
         if ( continuar == "n" ):
             print("-- Fim da execução do programa --")
             break
-        o_que_deseja()
+
 
 
 # Encaminha para a função a executar conforme escolha do usuário
