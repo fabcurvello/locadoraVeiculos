@@ -149,10 +149,3 @@ iniciar_veiculos_alugar()
 gestor_execucao()
 
 
-#mostrar_portifolio()
-#o_que_deseja()
-
-# print( veiculos_a_alugar[0]["fabricante"] )
-
-# for veiculo in veiculos_alugar:
-#     print(veiculo["fabricante"])
