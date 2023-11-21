@@ -1,10 +1,11 @@
 mostrar = "a"
 alugar = "b"
 devolver = "c"
-veiculos_a_alugar = []
-veiculos_alugados = []
+veiculos_a_alugar = []  # list com dicionários de veículos a alugar
+veiculos_alugados = []  # list com dicionários de veículos alugados
 
 
+# Carregar base de dados de veículos no list veiculos_a_alugar
 def iniciar_veiculos_alugar():
     veiculos_a_alugar.append({
         "fabricante": "VW",
@@ -47,6 +48,7 @@ def iniciar_veiculos_alugar():
     })
 
 
+# Gerencia a execução/finalização do programa
 def gestor_execucao():
     while( True ):
         continuar = input("Deseja continuar o programa? (S ou N) ").lower()
@@ -56,6 +58,7 @@ def gestor_execucao():
         o_que_deseja()
 
 
+# Encaminha para a função a executar conforme escolha do usuário
 def o_que_deseja():
     print("\n=================================")
     print("Bem vindo à Locadora de Veículos!")
@@ -75,6 +78,7 @@ def o_que_deseja():
         print("Opção inválida...")
 
 
+# Exibe o portifólio de veículos a alugar
 def mostrar_portifolio():
     cont = 1
     print("\n----------- PORTIFÓLIO DE VEÍCULOS DISPONÍVEIS PARA LOCAÇÃO -----------")
@@ -84,6 +88,7 @@ def mostrar_portifolio():
     print("------------------------------------------------------------------------\n")
 
 
+# Realiza o aluguel de veículo (retirando o veículo escolhido de veiculos_a_alugar e inserindo em veiculos_alugados
 def alugar_um_veiculo():
     mostrar_portifolio()
     codigo = int(input("Informe o código de veículo desejado: "))
@@ -117,6 +122,7 @@ def alugar_um_veiculo():
         print("Opção inválida...")
 
 
+# Realiza a devolução de veículo (retirando o veículo escolhido de veiculos_alugados e inserindo em veiculos_a_alugar
 def devolver_um_veiculo():
     cont = 1
     print("\n----------- SELECIONE O VEÍCULO PARA DEVOLUÇÃO DE LOCAÇÃO -----------")
