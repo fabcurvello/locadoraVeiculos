@@ -88,7 +88,7 @@ def alugar_um_veiculo():
     mostrar_portifolio()
     codigo = int(input("Informe o código de veículo desejado: "))
 
-    if ( (codigo >= 1) and (codigo <= len(veiculos_a_alugar))):
+    if ((codigo >= 1) and (codigo <= len(veiculos_a_alugar))):
         print(f"Veículo selecionado: "
               f"{veiculos_a_alugar[codigo - 1]['fabricante']} "
               f"{veiculos_a_alugar[codigo - 1]['modelo']} "
@@ -119,11 +119,29 @@ def alugar_um_veiculo():
 
 def devolver_um_veiculo():
     cont = 1
-    print("\n----------- SELECIONE QUAL O VEÍCULO PARA DEVOLUÇÃO DE LOCAÇÃO -----------")
+    print("\n----------- SELECIONE O VEÍCULO PARA DEVOLUÇÃO DE LOCAÇÃO -----------")
     for veiculo in veiculos_alugados:
         print(f" {cont} - {veiculo['fabricante']} {veiculo['modelo']} {veiculo['cor']} {veiculo['ano']}")
         cont += 1
-    print("----------------------------------------------------------------------------\n")
+    print("-----------------------------------------------------------------------\n")
+
+    codigo = int(input("Informe o código: "))
+
+    if ((codigo >= 1) and (codigo <= len(veiculos_alugados))):
+        print(f"Veículo selecionado: "
+              f"{veiculos_alugados[codigo - 1]['fabricante']} "
+              f"{veiculos_alugados[codigo - 1]['modelo']} "
+              f"{veiculos_alugados[codigo - 1]['cor']} "
+              f"{veiculos_alugados[codigo - 1]['ano']}")
+        confirma = input("Você confirma a devolução? (S ou N) ").lower()
+        if (confirma == "s"):
+            veiculos_a_alugar.append(veiculos_alugados[codigo - 1])
+            del veiculos_alugados[codigo - 1]
+            print("Devolução de veículo concluída com êxito. Esperamos lhe ver novamente em breve!")
+        else:
+            print("Tentativa de devolução CANCELADA.")
+    else:
+        print("Opção inválida...")
 
 
 # ----- Execução do Programa -----
